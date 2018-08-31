@@ -8,7 +8,7 @@ struct Node {
 
     void killSelf()
     {
-    	next ->killSelf();
+    	next ->killSelf(); // Esto está mal, deberías verificar que next no sea NULL
     	delete this;
     }
 

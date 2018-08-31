@@ -4,7 +4,6 @@
 #include <iostream>
 #include "node.h"
 #include  <stdexcept>
-#include "iterator.h"
 
 using namespace std;
 
@@ -34,7 +33,7 @@ class List {
         T back()
         {
             if(!tail){
-                throw "Lista Vacia"
+                throw "Lista Vacia" // Falta ; esto no compila
             }
             return tail -> data;
         }
@@ -42,7 +41,7 @@ class List {
         {
             if(!head)
             {
-                head = new Node<T>;
+                head = new Node<T>; 
                 head->data = value;
                 head->next = NULL;
                 tail=head;
@@ -62,14 +61,14 @@ class List {
             {
                 head = new Node<T>;
                 tail->data = value;
-                tail->next = NUll;
+                tail->next = NUll; // Así no se escribe NULL, no compila
                 head = tail;
             }
             else
             {
                 Node<T> *temp =  new Node<T>;
                 temp->data = value;
-                temp->next = NUll;
+                temp->next = NUll; // Así no se escribe NULL, no compila
                 tail->next= temp;
                 tail = temp;
             }
@@ -110,7 +109,7 @@ class List {
                 }
                 delete copiatail;
                 tail->next = NULL;
-                nodes--;    
+                nodes--;    // esto se puede mejorar sacándolo del if, ya que siempre reduces el tamaño
                 }
             
         }
@@ -132,21 +131,21 @@ class List {
         {
             if(!head)
                 throw"Lista Vacia";
-            tail->next = other->head;
+            tail->next = other->head; // No estás igualando tail al nuevo final
             nodes += other->nodes;
 
         }
         bool empty()
         {
             if(!head)
-                throw"Lista Vacia";
+                throw"Lista Vacia"; // Esto está mal, si la lista está vacía va a retornar error
             return tail == NULL;
         }
         int size()
         {
 
             if(!head)
-                throw"Lista Vacia";
+                throw"Lista Vacia"; // Esto está mal, si la lista está vacía debería retornar 0 y no una excepción
             return nodes;
         }
         void print()
@@ -170,14 +169,12 @@ class List {
             head ->printReverse();
         }
         void clear()
-        {}
+        {
             if(!head)
                 throw"Lista Vacia";
             head -> killSelf();
         }
-        Iterator<T> begin();
-        Iterator<T> end();
 
-        ~List();
+        ~List(); // No se implementó
 };
 #endif
